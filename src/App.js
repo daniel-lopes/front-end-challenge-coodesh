@@ -1,7 +1,10 @@
+import './App.css';
+import Main from "./components/main";
+
 function App() {
   return (
     <div>
-      Front-end Challenge 2021 - Space Flight News
+      <Main />
     </div>
   );
 }
