@@ -1,18 +1,35 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import Fade from '@mui/material/Fade';
+import * as React from 'react'
+import Button from '@mui/material/Button'
+import Menu from '@mui/material/Menu'
+import MenuItem from '@mui/material/MenuItem'
+import Fade from '@mui/material/Fade'
 
-export default function SearchSort() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
+export default function SearchSort({ flightNewsPoster, setFlightNewsPoster }) {
+  const [anchorEl, setAnchorEl] = React.useState(null)
+  const open = Boolean(anchorEl)
+  const [posterOrder, setPosterOrder] = React.useState('RECENT')
+  const RECENT = 'RECENT'
+  const OLDER = 'OLDER'
+
   const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+    setAnchorEl(event.currentTarget)
+  }
+
   const handleClose = () => {
     setAnchorEl(null);
-  };
+  }
+
+  const toggleSortPoster = sort => {
+    const newsPoster = [...flightNewsPoster]
+    if((posterOrder === RECENT) && (sort === OLDER)){
+      setPosterOrder(OLDER)
+      setFlightNewsPoster(newsPoster.reverse())
+    } else if(posterOrder === OLDER && sort === RECENT){
+      setPosterOrder(RECENT)
+      setFlightNewsPoster(newsPoster.reverse())
+    }
+    handleClose()
+  }
 
   return (
     <div>
@@ -35,9 +52,9 @@ export default function SearchSort() {
         onClose={handleClose}
         TransitionComponent={Fade}
       >
-        <MenuItem onClick={handleClose}>Most Older</MenuItem>
+        <MenuItem onClick={() => toggleSortPoster(OLDER)}>Most Older</MenuItem>
         <hr />
-        <MenuItem onClick={handleClose}>Most Recent</MenuItem>
+        <MenuItem onClick={() => toggleSortPoster(RECENT)}>Most Recent</MenuItem>
       </Menu>
     </div>
   );

@@ -9,7 +9,7 @@ import {
   CardSummary
 } from './posterCardCss'
 
-export default function PosterCard({ newsCardData }) {
+export default function PosterCard({ newsCardData, leftImage }) {
   const formatDate = (date) => {
     if (!date) return
     const unformattedDate = new Date(date.substr(0, date.indexOf('T')))
@@ -17,12 +17,10 @@ export default function PosterCard({ newsCardData }) {
     return formattedDate
   }
 
-  console.log(newsCardData)
-
   return (
     <>
       { newsCardData &&
-        <Container>
+        <Container leftImage={leftImage}>
           <img src={newsCardData.imageUrl} width={300}/>
           <CardInformation>
             <CardTitle>
@@ -37,6 +35,7 @@ export default function PosterCard({ newsCardData }) {
             <CardSummary>
               { newsCardData.summary }
             </CardSummary>
+            
           </CardInformation>
         </Container>
       }
