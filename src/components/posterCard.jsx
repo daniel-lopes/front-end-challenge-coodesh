@@ -6,7 +6,8 @@ import {
   CardHeader,
   CardDate,
   ButtonNewsSite,
-  CardSummary
+  CardSummary,
+  ButtonViewMore,
 } from './posterCardCss'
 
 export default function PosterCard({ newsCardData, leftImage }) {
@@ -35,7 +36,7 @@ export default function PosterCard({ newsCardData, leftImage }) {
             <CardSummary>
               { newsCardData.summary }
             </CardSummary>
-            
+            <ButtonViewMore>Ver Mais</ButtonViewMore>
           </CardInformation>
         </Container>
       }

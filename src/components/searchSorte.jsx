@@ -1,8 +1,10 @@
 import * as React from 'react'
-import Button from '@mui/material/Button'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import Fade from '@mui/material/Fade'
+import { ButtonSort } from './searchSorteCss'
+import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
 export default function SearchSort({ flightNewsPoster, setFlightNewsPoster }) {
   const [anchorEl, setAnchorEl] = React.useState(null)
@@ -31,17 +33,24 @@ export default function SearchSort({ flightNewsPoster, setFlightNewsPoster }) {
     handleClose()
   }
 
+  const iconButtonSearchSort = order => {
+    if(order === OLDER)
+      return <ArrowDropUpIcon />
+    return <ArrowDropDownIcon />
+  }
+
   return (
-    <div>
-      <Button
+    <>
+      <ButtonSort
         id="fade-button"
         aria-controls="fade-menu"
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
+        endIcon={iconButtonSearchSort(posterOrder)}
       >
-        Sort
-      </Button>
+        ordenar
+      </ButtonSort>
       <Menu
         id="fade-menu"
         MenuListProps={{
@@ -51,11 +60,12 @@ export default function SearchSort({ flightNewsPoster, setFlightNewsPoster }) {
         open={open}
         onClose={handleClose}
         TransitionComponent={Fade}
+        style={{marginTop: 15}}
       >
-        <MenuItem onClick={() => toggleSortPoster(OLDER)}>Most Older</MenuItem>
+        <MenuItem onClick={() => toggleSortPoster(OLDER)}>Mais antigas <ArrowDropUpIcon /></MenuItem>
         <hr />
-        <MenuItem onClick={() => toggleSortPoster(RECENT)}>Most Recent</MenuItem>
+        <MenuItem onClick={() => toggleSortPoster(RECENT)}>Mais recentes <ArrowDropDownIcon /></MenuItem>
       </Menu>
-    </div>
+    </>
   );
 }
