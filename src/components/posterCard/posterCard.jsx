@@ -1,6 +1,7 @@
 import React from 'react'
 import {
   Container,
+  CardImage,
   CardInformation,
   CardTitle,
   CardHeader,
@@ -8,7 +9,8 @@ import {
   ButtonNewsSite,
   CardSummary,
   ButtonViewMore,
-} from './posterCardCss'
+} from './style'
+import ModalPoster from '../modal'
 
 export default function PosterCard({ newsCardData, leftImage }) {
   const formatDate = (date) => {
@@ -20,10 +22,12 @@ export default function PosterCard({ newsCardData, leftImage }) {
 
   return (
     <>
+      <ModalPoster />
       { newsCardData &&
         <Container leftImage={leftImage}>
-          <img src={newsCardData.imageUrl} width={300}/>
-          <CardInformation>
+          
+          <CardImage srcImage={newsCardData.imageUrl} width={300}/>
+          <CardInformation leftImage={leftImage}>
             <CardTitle>
               { newsCardData.title }
             </CardTitle>
@@ -31,7 +35,15 @@ export default function PosterCard({ newsCardData, leftImage }) {
               <CardDate>
                 { formatDate(newsCardData.updatedAt) }
               </CardDate>
-              <ButtonNewsSite>{ newsCardData.newsSite }</ButtonNewsSite>
+              <ButtonNewsSite 
+                underline="none"
+                target="_blank"
+                rel="noopener"
+                rel="noreferrer"
+                href={newsCardData.url}
+              >
+                { newsCardData.newsSite }
+              </ButtonNewsSite>
             </CardHeader>
             <CardSummary>
               { newsCardData.summary }

@@ -12,7 +12,7 @@ export default function Search({
   flightNewsPoster
 }) {
   const [postSearchField, setPostSearchField] = useState('')
-  const InitialNumberPosters = 2
+  const InitialNumberPosters = 10
   let isSearchWithoutText = false
 
   useEffect(() => {
@@ -43,7 +43,7 @@ export default function Search({
     >
       <InputBase
         sx={{ ml: 1, flex: 1 }}
-        placeholder="Search Space Flight News"
+        placeholder="Pesquisar notícias de voos espaciais"
         inputProps={{ 'aria-label': 'search google maps' }}
         onChange={e => {
           setPostSearchField(e.target.value)

@@ -1,18 +1,17 @@
 import React, { useState } from 'react'
-import PosterCard from './posterCard'
-import Search from './search'
+import PosterCard from '../../components/posterCard'
+import Search from '../../components/search'
 import {
   Container,
   Menu,
   Title,
   ButtonLoadMore,
-  Rocket,
-  HorizontalBar
-} from './maincss'
-import SearchSort from './searchSorte'
+  Rocket
+} from './style'
+import SearchSort from '../../components/searchSorte'
 
 export default function Main() {
-  const InitialNumberPosters = 2
+  const InitialNumberPosters = 10
   const [flightNewsPoster, setFlightNewsPoster] = useState([])
   const [numberFlightNewsPoster, setNumberFlightNewsPoster] = useState(InitialNumberPosters)
   document.title = "Space Flight News"
@@ -47,9 +46,8 @@ export default function Main() {
       <Rocket />
       <Container>
         <Title>Space Flight News</Title>
-        <HorizontalBar />
         { renderFlightNewsPoster(flightNewsPoster) }
-        <ButtonLoadMore onClick={() => setNumberFlightNewsPoster(numberFlightNewsPoster + 1)}>Carregar Mais</ButtonLoadMore>
+        <ButtonLoadMore onClick={() => setNumberFlightNewsPoster(numberFlightNewsPoster + 10)}>Carregar Mais</ButtonLoadMore>
       </Container>
   </>
   )
