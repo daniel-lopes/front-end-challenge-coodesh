@@ -19,6 +19,6 @@ Depois digite o comando abaixo para iniciar a aplicação na sua máquina
 Aguarde enquanto o servidor inicia.<br>
 Caso o navegador não abra sozinho entre nesse endereço [http://localhost:3000](http://localhost:3000)
 
-### `Pre requisitos`
+### `Pré-requisitos:`
 
 Ter o NodeJS e o Yarn instalados
