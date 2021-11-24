@@ -6,9 +6,11 @@ import {
   Menu,
   Title,
   ButtonLoadMore,
-  Rocket
+  Rocket,
+  Body
 } from './style'
 import SearchSort from '../../components/searchSorte'
+import ModalPoster from '../../components/modal'
 
 export default function Main() {
   const InitialNumberPosters = 10
@@ -21,16 +23,23 @@ export default function Main() {
 
     return newsPoster.map((poster, idx) => {
       return (
-        <PosterCard
-          newsCardData={poster}
-          key={idx}
-          leftImage={idx % 2 === 0}
-        />
+        <Body key={poster.id}>
+          <PosterCard
+            newsCardData={poster}        
+            leftImage={idx % 2 === 0}
+          >
+            <ModalPoster>
+              <PosterCard
+                newsCardData={poster}
+                leftImage={idx % 2 === 0}
+                ismodal
+              />
+            </ModalPoster>
+          </PosterCard>
+        </Body>
       )
     })
   }
-
-  console.log(flightNewsPoster)
 
   return (
     <>

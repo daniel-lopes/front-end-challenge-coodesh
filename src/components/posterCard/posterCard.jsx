@@ -8,25 +8,27 @@ import {
   CardDate,
   ButtonNewsSite,
   CardSummary,
-  ButtonViewMore,
+  ButtonGoToSite
 } from './style'
-import ModalPoster from '../modal'
 
-export default function PosterCard({ newsCardData, leftImage }) {
+export default function PosterCard({
+  newsCardData,
+  leftImage,
+  children,
+  ismodal
+}) {
   const formatDate = (date) => {
     if (!date) return
     const unformattedDate = new Date(date.substr(0, date.indexOf('T')))
     const formattedDate = unformattedDate.toLocaleDateString('pt-BR', {timeZone: 'UTC'})
     return formattedDate
   }
-
+  
   return (
     <>
-      <ModalPoster />
       { newsCardData &&
-        <Container leftImage={leftImage}>
-          
-          <CardImage srcImage={newsCardData.imageUrl} width={300}/>
+        <Container leftImage={leftImage} ismodal={ismodal}>
+          <CardImage srcImage={newsCardData.imageUrl} ismodal={ismodal}/>
           <CardInformation leftImage={leftImage}>
             <CardTitle>
               { newsCardData.title }
@@ -39,7 +41,6 @@ export default function PosterCard({ newsCardData, leftImage }) {
                 underline="none"
                 target="_blank"
                 rel="noopener"
-                rel="noreferrer"
                 href={newsCardData.url}
               >
                 { newsCardData.newsSite }
@@ -48,7 +49,16 @@ export default function PosterCard({ newsCardData, leftImage }) {
             <CardSummary>
               { newsCardData.summary }
             </CardSummary>
-            <ButtonViewMore>Ver Mais</ButtonViewMore>
+            <ButtonGoToSite
+              underline="none"
+              target="_blank"
+              rel="noopener"
+              href={newsCardData.url}
+              ismodal={ismodal}
+            >
+              Ir para o site
+            </ButtonGoToSite>
+            { children }
           </CardInformation>
         </Container>
       }

@@ -1,31 +1,35 @@
 import styled from 'styled-components';
-import Link from '@mui/material/Link';
 import Button from '@mui/material/Button';
+import Link from '@mui/material/Link';
 import rocketImg from '../../images/rocket2.webp';
 
 export const Container = styled.div`
   display: flex;
   max-width: 900px;
   flex-wrap: wrap;
+  align-items: flex-start;
+  background-color: #FBFBFB;
+  box-shadow: 1px 1px 4px rgba(0,0,0,.5);
+  padding: 25px 10px;
+  
   flex-direction: ${props => {
     if (props.leftImage)
       return 'row'
     return 'row-reverse';
   }};
-  align-items: flex-start;
-  margin-bottom: 50px;
-  background-color: #FBFBFB;
-  box-shadow: 1px 1px 4px rgba(0,0,0,.5);
-  padding: 25px 10px;
+  
+  margin-bottom: ${props => {
+    if (!props.ismodal) return '50px'
+  }};
 
   @media(min-width: 800px) {
     padding: 80px 50px;
   }
 
   @media(max-width: 1114px) {
-    width: 98%;
+    width: 90%;
+    align-items: center;
   }
-
 `;
 
 export const CardImage = styled.div`
@@ -38,8 +42,11 @@ export const CardImage = styled.div`
   width: 242px;
   height: 192px;
 
-  @media(max-width: 1114px) {
-    width: 100%;
+  @media(max-width: ${props => {
+    if(props.ismodal) return '1784px'
+    return '1114px'
+  }}) {
+    min-width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -59,6 +66,12 @@ export const CardInformation = styled.div`
         return 'auto auto auto 30px'
       return 'auto 30px auto auto';
     }};
+  }
+
+  @media(max-width: 1114px) {
+    width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
   }
 `;
 
@@ -99,7 +112,11 @@ export const ButtonNewsSite = styled(Link)`
   }
 `;
 
-export const ButtonViewMore = styled(Button)`
+export const CardSummary = styled.div`
+  line-height: 26px;
+`;
+
+export const ButtonGoToSite = styled(Button)`
   border: solid 1px #D07017 !important;
   color: #FFF !important;
   text-shadow: 1px 1px 1px #1E2022;
@@ -109,12 +126,11 @@ export const ButtonViewMore = styled(Button)`
   padding-left: 20px !important;
   padding-right: 20px !important;
   background-color: #D07017 !important;
+  display: ${props => {
+    if (!props.ismodal) return 'none !important';
+  }};
 
   &:hover {
     background-color: #914D0E !important;
   }
-`;
-
-export const CardSummary = styled.div`
-  line-height: 26px;
 `;

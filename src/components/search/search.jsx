@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
 import Divider from '@mui/material/Divider';
@@ -13,11 +13,11 @@ export default function Search({
 }) {
   const [postSearchField, setPostSearchField] = useState('')
   const InitialNumberPosters = 10
-  let isSearchWithoutText = false
 
-  useEffect(() => {
-    const baseUrl = `https://api.spaceflightnewsapi.net/v3/articles?_limit=`
+  useMemo(() => {
+    const baseUrl = `https://api.spaceflightnewsapi.net/v3/articles?_sort=id:DESC&_limit=`
     let url
+    let isSearchWithoutText = false
     if(postSearchField){
       url = `${baseUrl}${numberFlightNewsPoster}&title_contains=${postSearchField}`
     } else {
@@ -35,11 +35,11 @@ export default function Search({
       }
     }
     fetchData()
-  }, [numberFlightNewsPoster, postSearchField])
+  }, [numberFlightNewsPoster, postSearchField, setFlightNewsPoster])
 
   return (
     <Paper
-      sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400, height: 40 }}
+      sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 350, height: 40 }}
     >
       <InputBase
         sx={{ ml: 1, flex: 1 }}

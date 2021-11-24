@@ -1,6 +1,6 @@
 import {  createGlobalStyle } from 'styled-components';
-import robotoCondensedBold from './roboto_condensed/RobotoCondensed-Bold.ttf';
-import robotoCondensedRegular from './roboto_condensed/RobotoCondensed-Regular.ttf';
+import robotoCondensedBold from '../../fonts/roboto_condensed/RobotoCondensed-Bold.ttf';
+import robotoCondensedRegular from '../../fonts/roboto_condensed/RobotoCondensed-Regular.ttf';
 
 const GlobalStyle = createGlobalStyle`
   @font-face {

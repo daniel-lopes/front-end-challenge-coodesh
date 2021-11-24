@@ -2,7 +2,7 @@ import * as React from 'react'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import Fade from '@mui/material/Fade'
-import { ButtonSort } from './searchSorteCss'
+import { ButtonSort, Line } from './style'
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
@@ -62,9 +62,9 @@ export default function SearchSort({ flightNewsPoster, setFlightNewsPoster }) {
         TransitionComponent={Fade}
         style={{marginTop: 15}}
       >
-        <MenuItem onClick={() => toggleSortPoster(OLDER)}>Mais antigas <ArrowDropUpIcon /></MenuItem>
-        <hr />
-        <MenuItem onClick={() => toggleSortPoster(RECENT)}>Mais recentes <ArrowDropDownIcon /></MenuItem>
+        <MenuItem onClick={() => toggleSortPoster(OLDER)}>Mais Antigas <ArrowDropUpIcon /></MenuItem>
+        <Line />
+        <MenuItem onClick={() => toggleSortPoster(RECENT)}>Mais Recentes <ArrowDropDownIcon /></MenuItem>
       </Menu>
     </>
   );

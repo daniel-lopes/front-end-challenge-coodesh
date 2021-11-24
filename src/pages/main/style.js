@@ -9,6 +9,16 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   margin-bottom: 50px;
+  overflow: hidden;
+
+  @media(max-width: 1114px) {
+    min-width: 100%;
+  }
+`;
+
+export const Body = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 export const Menu = styled.div`
@@ -19,6 +29,7 @@ export const Menu = styled.div`
   align-items: center;
   padding-left: 5px;
   padding-right: 5px;
+  overflow: hidden;
 `
 
 export const Rocket = styled.div`
