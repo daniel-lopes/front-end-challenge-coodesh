@@ -16,6 +16,8 @@ export default function Main() {
   const InitialNumberPosters = 10
   const [flightNewsPoster, setFlightNewsPoster] = useState([])
   const [numberFlightNewsPoster, setNumberFlightNewsPoster] = useState(InitialNumberPosters)
+  const [orderResults, setOrderResults] = useState('DESC')
+
   document.title = "Space Flight News"
 
   const renderFlightNewsPoster = (newsPoster) => {
@@ -49,8 +51,9 @@ export default function Main() {
           setFlightNewsPoster={setFlightNewsPoster}
           setNumberFlightNewsPoster={setNumberFlightNewsPoster}
           flightNewsPoster={flightNewsPoster}
+          orderResults={orderResults}
         />
-        <SearchSort flightNewsPoster={flightNewsPoster} setFlightNewsPoster={setFlightNewsPoster} />
+        <SearchSort orderResults={orderResults} setOrderResults={setOrderResults} />
       </Menu>
       <Rocket />
       <Container>

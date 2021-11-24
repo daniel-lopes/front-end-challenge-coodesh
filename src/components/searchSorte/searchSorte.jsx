@@ -6,12 +6,12 @@ import { ButtonSort, Line } from './style'
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
-export default function SearchSort({ flightNewsPoster, setFlightNewsPoster }) {
+export default function SearchSort({ orderResults, setOrderResults }) {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
-  const [posterOrder, setPosterOrder] = React.useState('RECENT')
-  const RECENT = 'RECENT'
-  const OLDER = 'OLDER'
+
+  const DESC = 'DESC'
+  const ASC = 'ASC'
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget)
@@ -21,20 +21,18 @@ export default function SearchSort({ flightNewsPoster, setFlightNewsPoster }) {
     setAnchorEl(null);
   }
 
-  const toggleSortPoster = sort => {
-    const newsPoster = [...flightNewsPoster]
-    if((posterOrder === RECENT) && (sort === OLDER)){
-      setPosterOrder(OLDER)
-      setFlightNewsPoster(newsPoster.reverse())
-    } else if(posterOrder === OLDER && sort === RECENT){
-      setPosterOrder(RECENT)
-      setFlightNewsPoster(newsPoster.reverse())
-    }
+  const sortByMostRecent = () => {
+    setOrderResults(DESC)
+    handleClose()
+  }
+
+  const sortByOldest = () => {
+    setOrderResults(ASC)
     handleClose()
   }
 
   const iconButtonSearchSort = order => {
-    if(order === OLDER)
+    if(order === ASC)
       return <ArrowDropUpIcon />
     return <ArrowDropDownIcon />
   }
@@ -47,7 +45,7 @@ export default function SearchSort({ flightNewsPoster, setFlightNewsPoster }) {
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
-        endIcon={iconButtonSearchSort(posterOrder)}
+        endIcon={iconButtonSearchSort(orderResults)}
       >
         ordenar
       </ButtonSort>
@@ -62,9 +60,9 @@ export default function SearchSort({ flightNewsPoster, setFlightNewsPoster }) {
         TransitionComponent={Fade}
         style={{marginTop: 15}}
       >
-        <MenuItem onClick={() => toggleSortPoster(OLDER)}>Mais Antigas <ArrowDropUpIcon /></MenuItem>
+        <MenuItem onClick={sortByOldest}>Mais Antigas <ArrowDropUpIcon /></MenuItem>
         <Line />
-        <MenuItem onClick={() => toggleSortPoster(RECENT)}>Mais Recentes <ArrowDropDownIcon /></MenuItem>
+        <MenuItem onClick={sortByMostRecent}>Mais Recentes <ArrowDropDownIcon /></MenuItem>
       </Menu>
     </>
   );

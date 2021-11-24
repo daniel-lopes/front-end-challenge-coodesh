@@ -9,20 +9,23 @@ export default function Search({
   numberFlightNewsPoster,
   setFlightNewsPoster,
   setNumberFlightNewsPoster,
-  flightNewsPoster
+  flightNewsPoster,
+  orderResults
 }) {
   const [postSearchField, setPostSearchField] = useState('')
   const InitialNumberPosters = 10
 
   useMemo(() => {
-    const baseUrl = `https://api.spaceflightnewsapi.net/v3/articles?_sort=id:DESC&_limit=`
+    const baseUrl = `https://api.spaceflightnewsapi.net/v3/articles?_sort=id:${orderResults}&_limit=`
     let url
     let isSearchWithoutText = false
     if(postSearchField){
       url = `${baseUrl}${numberFlightNewsPoster}&title_contains=${postSearchField}`
-    } else {
+    } else if (numberFlightNewsPoster - flightNewsPoster.length){
       url = `${baseUrl}${numberFlightNewsPoster - flightNewsPoster.length}&_start=${flightNewsPoster.length}`
       isSearchWithoutText = true
+    } else {
+      url = `${baseUrl}${numberFlightNewsPoster}`
     }
 
     async function fetchData() {
@@ -35,7 +38,7 @@ export default function Search({
       }
     }
     fetchData()
-  }, [numberFlightNewsPoster, postSearchField, setFlightNewsPoster])
+  }, [numberFlightNewsPoster, postSearchField, setFlightNewsPoster, orderResults])
 
   return (
     <Paper
